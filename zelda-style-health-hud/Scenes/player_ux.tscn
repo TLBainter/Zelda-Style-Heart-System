@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://tdjaf0s2ql8y"]
+
+[ext_resource type="Script" uid="uid://gwv2dfn06c82" path="res://Scripts/player_ux.gd" id="1_ncotf"]
+[ext_resource type="PackedScene" uid="uid://dpi8eoqdihjci" path="res://Scenes/player_ux_heart.tscn" id="1_ny02c"]
+[ext_resource type="Script" uid="uid://br8joxna7jfue" path="res://Scripts/heart_grid.gd" id="2_pbyg7"]
+
+[node name="PlayerUX" type="Control" unique_id=521274949 node_paths=PackedStringArray("hearts_grid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncotf")
+hearts_grid = NodePath("PlayerUXCanvas/HeartsGridContainer")
+
+[node name="PlayerUXCanvas" type="CanvasLayer" parent="." unique_id=1780324202]
+
+[node name="HeartsGridContainer" type="GridContainer" parent="PlayerUXCanvas" unique_id=2129699922 node_paths=PackedStringArray("root")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 10
+script = ExtResource("2_pbyg7")
+heart_gui = ExtResource("1_ny02c")
+root = NodePath("../..")
