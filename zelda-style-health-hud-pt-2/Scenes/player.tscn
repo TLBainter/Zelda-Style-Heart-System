@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b7fg0hjltxfr8"]
+
+[ext_resource type="Script" uid="uid://dc7j0yyiv7gcm" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://tdjaf0s2ql8y" path="res://Scenes/player_ux.tscn" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://usawwmvk2j64" path="res://Scripts/HealthComponent.gd" id="2_vgqql"]
+
+[node name="PlayerRoot" type="Node2D" unique_id=450779211 node_paths=PackedStringArray("health")]
+script = ExtResource("1_6t5aa")
+health = NodePath("ComponentManager/HealthComponent")
+
+[node name="ComponentManager" type="Node" parent="." unique_id=1240929329]
+
+[node name="HealthComponent" type="Node" parent="ComponentManager" unique_id=84221467]
+script = ExtResource("2_vgqql")
+debug_me = true
+debug_name = "Player_Health"
+max_hearts = 11
+metadata/_custom_type_script = "uid://usawwmvk2j64"
+
+[node name="PlayerUX" parent="." unique_id=521274949 node_paths=PackedStringArray("player") instance=ExtResource("1_v0iea")]
+player = NodePath("..")
