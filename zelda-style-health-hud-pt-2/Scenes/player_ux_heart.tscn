@@ -7,12 +7,88 @@
 [ext_resource type="Texture2D" uid="uid://mqlvhtxjhilw" path="res://Sprites/Atlas Textures/heart_1-4.tres" id="5_dlrnc"]
 [ext_resource type="Texture2D" uid="uid://bm5l2wl4ely62" path="res://Sprites/Atlas Textures/heart_empty.tres" id="6_f7vgq"]
 
-[node name="Heart" type="Panel" unique_id=1345547915 node_paths=PackedStringArray("sprite")]
+[sub_resource type="Animation" id="Animation_6lklo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartTexture:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_orta5"]
+resource_name = "heart_flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartTexture:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wj10"]
+_data = {
+&"RESET": SubResource("Animation_6lklo"),
+&"heart_flash": SubResource("Animation_orta5")
+}
+
+[sub_resource type="Animation" id="Animation_dlrnc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f7vgq"]
+resource_name = "heart_pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.55, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.05, 1.05), Vector2(1.15, 1.15), Vector2(1.05, 1.05), Vector2(1.15, 1.15), Vector2(1.05, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7hr8e"]
+_data = {
+&"RESET": SubResource("Animation_dlrnc"),
+&"heart_pulse": SubResource("Animation_f7vgq")
+}
+
+[node name="Heart" type="Panel" unique_id=1345547915 node_paths=PackedStringArray("sprite", "flash_anim", "pulse_anim")]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_6lklo")
 sprite = NodePath("HeartTexture")
+flash_anim = NodePath("FlashAnim")
+pulse_anim = NodePath("PulseAnim")
 sprite_4_4_heart = ExtResource("1_461pk")
 sprite_3_4_heart = ExtResource("3_orta5")
 sprite_2_4_heart = ExtResource("4_2wj10")
@@ -36,3 +112,9 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("1_461pk")
 stretch_mode = 4
+
+[node name="FlashAnim" type="AnimationPlayer" parent="." unique_id=2023637794]
+libraries/ = SubResource("AnimationLibrary_2wj10")
+
+[node name="PulseAnim" type="AnimationPlayer" parent="." unique_id=1933251836]
+libraries/ = SubResource("AnimationLibrary_7hr8e")

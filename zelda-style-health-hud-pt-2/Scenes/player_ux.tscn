@@ -17,10 +17,10 @@ hearts_grid = NodePath("PlayerUXCanvas/HeartsGridContainer")
 [node name="PlayerUXCanvas" type="CanvasLayer" parent="." unique_id=1780324202]
 
 [node name="HeartsGridContainer" type="GridContainer" parent="PlayerUXCanvas" unique_id=2129699922 node_paths=PackedStringArray("root")]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 72.0
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 columns = 10
